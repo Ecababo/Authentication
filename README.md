@@ -24,6 +24,9 @@ Upon receiving the request, the client begins a loop, attempting to authenticate
 
 ## Next steps
 ### Planned Enhancements
+- **Certificate based Authentication**
+Allow for users to authenticate with certificates instead of username password pairs
+
 - **Error Handling**:
 Improve logging and exception management for edge cases, such as service unavailability or malformed requests.
 
