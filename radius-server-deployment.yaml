@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radius-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radius-server
+  template:
+    metadata:
+      labels:
+        app: radius-server
+    spec:
+      containers:
+      - name: radius-server
+        image: image_radius:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: radius-server-service
+spec:
+  selector:
+    app: radius-server
+  ports:
+  - protocol: TCP
+    port: 5001 
+    targetPort: 5001

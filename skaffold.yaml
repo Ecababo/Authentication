@@ -1,0 +1,24 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+build:
+  artifacts:
+    - image: image_radius
+      context: .
+      docker:
+        dockerfile: Dockerfile_radius
+    - image: image_client
+      context: .
+      docker:
+        dockerfile: Dockerfile_client
+deploy:
+  kubectl:
+    manifests:
+      - client-container-deployment.yaml
+      - radius-server-deployment.yaml
+portForward:
+  - resourceType: service
+    resourceName: client-container-service
+    port: 8080
+  - resourceType: service
+    resourceName: radius-server-service
+    port: 5001
